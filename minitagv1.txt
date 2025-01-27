@@ -1,0 +1,88 @@
+#include <Wire.h>
+#include <Adafruit_SSD1306.h>
+#include <SPI.h>
+#include <MFRC522.h>
+
+#define RST_PIN         D2     // Reset pin for RFID
+#define SS_PIN          D8     // SDA pin for RFID
+#define LED_PIN         D4     // IR LED pin
+
+// Create instances of the libraries
+MFRC522 mfrc522(SS_PIN, RST_PIN); // Create MFRC522 instance
+Adafruit_SSD1306 display(128, 64, &Wire, -1); // OLED screen
+
+// Store UID of the first card
+String savedUID = "";
+
+void setup() {
+  // Start Serial communication
+  Serial.begin(115200);
+  
+  // Initialize RFID
+  SPI.begin();
+  mfrc522.PCD_Init();
+  
+  // Initialize OLED
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    Serial.println(F("OLED initialization failed!"));
+    for (;;);
+  }
+  display.display();
+  delay(2000); // Wait for OLED to initialize
+
+  // Set LED pin as output
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  // Look for new RFID tags
+  if (mfrc522.PICC_IsNewCardPresent()) {
+    if (mfrc522.PICC_ReadCardSerial()) {
+      // Read UID of the RFID tag
+      String uid = "";
+      for (byte i = 0; i < mfrc522.uid.size; i++) {
+        uid += String(mfrc522.uid.uidByte[i], HEX);
+      }
+      Serial.print(F("UID tag:"));
+      Serial.println(uid);
+
+      // If the UID is not saved, save it
+      if (savedUID == "") {
+        savedUID = uid;
+        Serial.println(F("Card saved!"));
+        displayMessage("Card saved!", uid);
+      } else if (uid == savedUID) {
+        // If the UID matches the saved card, simulate IR signal
+        Serial.println(F("Matching card detected!"));
+        displayMessage("Matching card detected!", uid);
+        simulateIRSignal();
+      } else {
+        // If the UID is different, just display it
+        Serial.println(F("Different card detected!"));
+        displayMessage("Different card detected!", uid);
+      }
+
+      delay(1000); // Wait for 1 second before checking again
+    }
+  }
+}
+
+void displayMessage(String message, String uid) {
+  // Display the message and UID on the OLED screen
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(0, 0);
+  display.print(message);
+  display.setCursor(0, 10);
+  display.print("UID: ");
+  display.print(uid);
+  display.display();
+}
+
+void simulateIRSignal() {
+  // Simulate IR LED control (can be replaced with actual IR signal)
+  digitalWrite(LED_PIN, HIGH); // Turn on IR LED
+  delay(1000); // Wait for 1 second
+  digitalWrite(LED_PIN, LOW); // Turn off IR LED
+}

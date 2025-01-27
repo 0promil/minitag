@@ -1,0 +1,40 @@
+# Pick And Place List
+# Company=
+# Author=
+# eMail=
+#
+# Project=minitag
+# Date=02:04:19
+# CreatedBy=Fritzing 1.0.4.2024-10-07.CD-2065-0-a8c6ef7c
+#
+#
+# Coordinates in mils, always center of component
+# Origin 0/0=Lower left corner of PCB
+# Rotation in degree (0-360, math. pos.)
+#
+RefDes,Description,Package,X,Y,Rotation,Side,Mount
+Description: resistance;capacitance;inductance;voltage;current;power;mpn;mn;
+_,";;;3V;;;;;","",3239.92,228.72,0,Top,MANUAL
+_,";;;;;;;;","",839.917,1128.72,0,Top,MANUAL
+_,";;;;;;;;","",1039.92,678.72,0,Top,MANUAL
+,";;;;;;;;","",739.917,1228.72,0,Top,MANUAL
+S2,";;;;;;;;","[THT]",2011.96,490.14,0,Top,THT
+Q1,";;;;;;;;","TO92 [THT]",1447.42,1982.22,180,Top,THT
+,"220;;;;;0.25W;;;","THT",339.917,578.72,0,Top,THT
+wemos,";;;;;;;;","",589.903,691.602,0,Top,MANUAL
+_,";;;;;;;;","THT",3139.92,978.72,0,Top,THT
+_,";;;;;;;;","",489.917,878.72,0,Top,MANUAL
+_,";;;;;;;;","",536.456,295.179,0,Top,MANUAL
+_,";;;;0.030A;;;;","5 mm [THT]",1712.71,1978.72,-90,Top,THT
+rf 1,";;;;;;;;","THT",3139.92,1478.72,0,Top,THT
+_,";;;;;;;;","THT",139.917,178.72,180,Top,THT
+_,";;;;;;;;","",2539.92,778.72,0,Top,MANUAL
+_,";;;;;;;;","",1039.92,778.72,0,Top,MANUAL
+_,";;;;;;;;","",2739.92,1128.72,0,Top,MANUAL
+_,";;;;;;;;","",1639.92,1228.72,0,Top,MANUAL
+R2,"220;;;;;0.25W;;;","THT",339.917,678.72,0,Top,THT
+_,";;;;;;;;","",1339.92,1228.72,0,Top,MANUAL
+S3,";;;;;;;;","[THT]",2411.96,490.14,0,Top,THT
+_,";;;;;;;;","",2939.92,1028.72,0,Top,MANUAL
+_,";;;;;;;;","",161.153,1735.19,180,Top,MANUAL
+_,";;;;;;;;","THT",3139.92,1278.72,0,Top,THT
